@@ -18,10 +18,10 @@ namespace LyncMessaging
             get { return _done; }
         }
 
-        public LyncManager(string arg0, string arg1)
+        public LyncManager(string email, string message)
         {
-            _uri = arg0;
-            _message = arg1;
+            _uri = email;
+            _message = message;
             _client = Microsoft.Lync.Model.LyncClient.GetClient();
 
             //_client.BeginSignIn("email", "domainanduser", "password", BeginSearchCallback, new object[] { _client.ContactManager, _uri });
