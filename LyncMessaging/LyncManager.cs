@@ -23,18 +23,18 @@ namespace LyncMessaging
             _uri = email;
             _message = message;
             _client = Microsoft.Lync.Model.LyncClient.GetClient();
+            
+            _client.ContactManager.BeginSearch(_uri, BeginSearchCallback, new object[] { _client.ContactManager, _uri });
 
-            //_client.BeginSignIn("email", "domainanduser", "password", BeginSearchCallback, new object[] { _client.ContactManager, _uri });
-
-            _client.ContactManager.BeginSearch(
-                _uri,
-                SearchProviders.GlobalAddressList,
-                SearchFields.EmailAddresses,
-                SearchOptions.ContactsOnly,
-                2,
-                BeginSearchCallback,
-                new object[] { _client.ContactManager, _uri }
-            );
+            //_client.ContactManager.BeginSearch(
+            //    _uri,
+            //    SearchProviders.GlobalAddressList,
+            //    SearchFields.EmailAddresses,
+            //    SearchOptions.ContactsOnly,
+            //    2,
+            //    BeginSearchCallback,
+            //    new object[] { _client.ContactManager, _uri }
+            //);
         }
 
         private void BeginSearchCallback(IAsyncResult r)
